@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             targetNamespace="http://www.activiti.org/test">
+<process id="paymentProcess" name="Payment Process" isExecutable="true">
+    <!-- Start Event -->
+    <startEvent id="startEvent" name="Start Payment Process" />
+
+    <!-- User Task: Review Payment -->
+    <userTask id="reviewPayment" name="Review Payment" activiti:assignee="accountant" />
+    <sequenceFlow id="flow1" sourceRef="startEvent" targetRef="reviewPayment" />
+
+    <!-- User Task: Approve Payment -->
+    <userTask id="approvePayment" name="Approve Payment" activiti:assignee="manager" />
+    <sequenceFlow id="flow2" sourceRef="reviewPayment" targetRef="approvePayment" />
+
+    <!-- End Event -->
+    <endEvent id="endEvent" name="End Payment Process" />
+    <sequenceFlow id="flow3" sourceRef="approvePayment" targetRef="endEvent" />
+</process>
+</definitions>
